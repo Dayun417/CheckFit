@@ -1,24 +1,463 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tab-main">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="scene-tab-main">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tabBarController id="tab-main" customClass="MainTabBarController" customModule="CheckFit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="tabbar-main">
+                        <rect key="frame" x="0.0" y="759" width="393" height="93"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vc-health" kind="relationship" relationship="viewControllers" id="segue-health"/>
+                        <segue destination="vc-mission" kind="relationship" relationship="viewControllers" id="segue-mission"/>
+                        <segue destination="vc-add" kind="relationship" relationship="viewControllers" id="segue-add"/>
+                        <segue destination="vc-content" kind="relationship" relationship="viewControllers" id="segue-content"/>
+                        <segue destination="vc-mypage" kind="relationship" relationship="viewControllers" id="segue-mypage"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-tab-main" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-430" y="0.0"/>
+        </scene>
+        <!--내 건강-->
+        <scene sceneID="scene-health">
+            <objects>
+                <viewController id="vc-health" customClass="HealthViewController" customModule="CheckFit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-health">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="health-header">
+                                <rect key="frame" x="0.0" y="118" width="393" height="250"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="5.20 수⌄" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="health-date">
+                                        <rect key="frame" x="30.000000000000007" y="44" width="115.66666666666669" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" text="🔥  1" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="health-streak">
+                                        <rect key="frame" x="208" y="42" width="74" height="40"/>
+                                        <color key="backgroundColor" red="0.23899999999999999" green="0.71799999999999997" blue="0.55200000000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" text="🔔" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="health-bell">
+                                        <rect key="frame" x="296" y="45.333333333333343" width="32" height="33.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" text="🐱" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="health-avatar">
+                                        <rect key="frame" x="338" y="47.666666666666657" width="27" height="28.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="health-week">
+                                        <rect key="frame" x="30" y="123.99999999999999" width="333" height="38.333333333333329"/>
+                                        <subviews>
+                                            <label contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="hw1">
+                                                <rect key="frame" x="0.0" y="0.0" width="47.666666666666664" height="38.333333333333336"/>
+                                                <string key="text">월
+18</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <label contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="hw2">
+                                                <rect key="frame" x="47.666666666666671" y="0.0" width="47.333333333333329" height="38.333333333333336"/>
+                                                <string key="text">화
+19</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <label contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="hw3">
+                                                <rect key="frame" x="95" y="0.0" width="47.666666666666657" height="38.333333333333336"/>
+                                                <string key="text">수
+20</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <label contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="hw4">
+                                                <rect key="frame" x="142.66666666666666" y="0.0" width="47.666666666666657" height="38.333333333333336"/>
+                                                <string key="text">목
+21</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <label contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="hw5">
+                                                <rect key="frame" x="190.33333333333334" y="0.0" width="47.666666666666657" height="38.333333333333336"/>
+                                                <string key="text">금
+22</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <label contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="hw6">
+                                                <rect key="frame" x="238.00000000000003" y="0.0" width="47.333333333333343" height="38.333333333333336"/>
+                                                <string key="text">토
+23</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <label contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="hw7">
+                                                <rect key="frame" x="285.33333333333331" y="0.0" width="47.666666666666686" height="38.333333333333336"/>
+                                                <string key="text">일
+24</string>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.02" green="0.59999999999999998" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="health-date" firstAttribute="top" secondItem="health-header" secondAttribute="top" constant="44" id="hh-c1"/>
+                                    <constraint firstItem="health-streak" firstAttribute="height" constant="40" id="hh-c10"/>
+                                    <constraint firstItem="health-week" firstAttribute="leading" secondItem="health-header" secondAttribute="leading" constant="30" id="hh-c11"/>
+                                    <constraint firstItem="health-week" firstAttribute="trailing" secondItem="health-header" secondAttribute="trailing" constant="-30" id="hh-c12"/>
+                                    <constraint firstItem="health-week" firstAttribute="top" secondItem="health-date" secondAttribute="bottom" constant="44" id="hh-c13"/>
+                                    <constraint firstItem="health-date" firstAttribute="leading" secondItem="health-header" secondAttribute="leading" constant="30" id="hh-c2"/>
+                                    <constraint firstItem="health-streak" firstAttribute="centerY" secondItem="health-date" secondAttribute="centerY" id="hh-c3"/>
+                                    <constraint firstItem="health-streak" firstAttribute="trailing" secondItem="health-bell" secondAttribute="leading" constant="-14" id="hh-c4"/>
+                                    <constraint firstItem="health-bell" firstAttribute="centerY" secondItem="health-date" secondAttribute="centerY" id="hh-c5"/>
+                                    <constraint firstItem="health-avatar" firstAttribute="centerY" secondItem="health-date" secondAttribute="centerY" id="hh-c6"/>
+                                    <constraint firstItem="health-avatar" firstAttribute="trailing" secondItem="health-header" secondAttribute="trailing" constant="-28" id="hh-c7"/>
+                                    <constraint firstItem="health-bell" firstAttribute="trailing" secondItem="health-avatar" secondAttribute="leading" constant="-10" id="hh-c8"/>
+                                    <constraint firstItem="health-streak" firstAttribute="width" constant="74" id="hh-c9"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="health-diet-card">
+                                <rect key="frame" x="26" y="390" width="341" height="205"/>
+                                <subviews>
+                                    <label contentMode="scaleToFill" text="식단" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diet-title">
+                                        <rect key="frame" x="26" y="24" width="29.666666666666671" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.64000000000000001" blue="0.69999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" text="0 kcal" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diet-kcal">
+                                        <rect key="frame" x="25.999999999999993" y="60.333333333333314" width="94.333333333333314" height="40.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                        <color key="textColor" red="0.089999999999999997" green="0.13" blue="0.19" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" text="● 탄 0%     ● 단 0%     ● 지 0%" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diet-macro">
+                                        <rect key="frame" x="26" y="121" width="202.66666666666666" height="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.64000000000000001" blue="0.69999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" text="🌅        ☀️        🌙        🍎" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diet-icons">
+                                        <rect key="frame" x="34" y="160" width="273" height="32.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" text="아침        점심        저녁        간식" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diet-labels">
+                                        <rect key="frame" x="34" y="200.33333333333337" width="273" height="15.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.64000000000000001" blue="0.69999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="diet-title" firstAttribute="top" secondItem="health-diet-card" secondAttribute="top" constant="24" id="dc1"/>
+                                    <constraint firstItem="diet-labels" firstAttribute="top" secondItem="diet-icons" secondAttribute="bottom" constant="8" id="dc10"/>
+                                    <constraint firstItem="diet-labels" firstAttribute="leading" secondItem="diet-icons" secondAttribute="leading" id="dc11"/>
+                                    <constraint firstItem="diet-labels" firstAttribute="trailing" secondItem="diet-icons" secondAttribute="trailing" id="dc12"/>
+                                    <constraint firstItem="diet-title" firstAttribute="leading" secondItem="health-diet-card" secondAttribute="leading" constant="26" id="dc2"/>
+                                    <constraint firstItem="diet-kcal" firstAttribute="top" secondItem="diet-title" secondAttribute="bottom" constant="16" id="dc3"/>
+                                    <constraint firstItem="diet-kcal" firstAttribute="leading" secondItem="diet-title" secondAttribute="leading" id="dc4"/>
+                                    <constraint firstItem="diet-macro" firstAttribute="top" secondItem="diet-kcal" secondAttribute="bottom" constant="20" id="dc5"/>
+                                    <constraint firstItem="diet-macro" firstAttribute="leading" secondItem="diet-title" secondAttribute="leading" id="dc6"/>
+                                    <constraint firstItem="diet-icons" firstAttribute="top" secondItem="diet-macro" secondAttribute="bottom" constant="22" id="dc7"/>
+                                    <constraint firstItem="diet-icons" firstAttribute="leading" secondItem="health-diet-card" secondAttribute="leading" constant="34" id="dc8"/>
+                                    <constraint firstItem="diet-icons" firstAttribute="trailing" secondItem="health-diet-card" secondAttribute="trailing" constant="-34" id="dc9"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="health-weight-card">
+                                <rect key="frame" x="26" y="617" width="162" height="150"/>
+                                <subviews>
+                                    <label contentMode="scaleToFill" text="체중" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weight-title">
+                                        <rect key="frame" x="18" y="20" width="26" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.64000000000000001" blue="0.69999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" text="45.6 kg" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weight-value">
+                                        <rect key="frame" x="18" y="62.000000000000007" width="77.666666666666671" height="26.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="textColor" red="0.089999999999999997" green="0.13" blue="0.19" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="weight-title" firstAttribute="top" secondItem="health-weight-card" secondAttribute="top" constant="20" id="wc1"/>
+                                    <constraint firstItem="weight-title" firstAttribute="leading" secondItem="health-weight-card" secondAttribute="leading" constant="18" id="wc2"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="health-fasting-card">
+                                <rect key="frame" x="205" y="617" width="162" height="150"/>
+                                <subviews>
+                                    <label contentMode="scaleToFill" text="단식" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fast-title">
+                                        <rect key="frame" x="18" y="20" width="26" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.64000000000000001" blue="0.69999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" text="?? 시간" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fast-value">
+                                        <rect key="frame" x="18" y="62.000000000000007" width="66.333333333333329" height="26.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="textColor" red="0.089999999999999997" green="0.13" blue="0.19" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="fast-title" firstAttribute="top" secondItem="health-fasting-card" secondAttribute="top" constant="20" id="fc1"/>
+                                    <constraint firstItem="fast-title" firstAttribute="leading" secondItem="health-fasting-card" secondAttribute="leading" constant="18" id="fc2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-health"/>
+                        <color key="backgroundColor" red="0.96499999999999997" green="0.97299999999999998" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fast-value" firstAttribute="top" secondItem="fast-title" secondAttribute="bottom" constant="24" id="fc3"/>
+                            <constraint firstItem="fast-value" firstAttribute="leading" secondItem="fast-title" secondAttribute="leading" id="fc4"/>
+                            <constraint firstItem="health-header" firstAttribute="top" secondItem="safe-health" secondAttribute="top" id="h-main-1"/>
+                            <constraint firstItem="health-weight-card" firstAttribute="leading" secondItem="health-diet-card" secondAttribute="leading" id="h-main-10"/>
+                            <constraint firstItem="health-weight-card" firstAttribute="width" constant="162" id="h-main-11"/>
+                            <constraint firstItem="health-weight-card" firstAttribute="height" constant="150" id="h-main-12"/>
+                            <constraint firstItem="health-fasting-card" firstAttribute="top" secondItem="health-weight-card" secondAttribute="top" id="h-main-13"/>
+                            <constraint firstItem="health-fasting-card" firstAttribute="trailing" secondItem="health-diet-card" secondAttribute="trailing" id="h-main-14"/>
+                            <constraint firstItem="health-fasting-card" firstAttribute="width" secondItem="health-weight-card" secondAttribute="width" id="h-main-15"/>
+                            <constraint firstItem="health-fasting-card" firstAttribute="height" secondItem="health-weight-card" secondAttribute="height" id="h-main-16"/>
+                            <constraint firstItem="health-header" firstAttribute="leading" secondItem="view-health" secondAttribute="leading" id="h-main-2"/>
+                            <constraint firstItem="health-header" firstAttribute="trailing" secondItem="view-health" secondAttribute="trailing" id="h-main-3"/>
+                            <constraint firstItem="health-header" firstAttribute="height" constant="250" id="h-main-4"/>
+                            <constraint firstItem="health-diet-card" firstAttribute="top" secondItem="health-header" secondAttribute="bottom" constant="22" id="h-main-5"/>
+                            <constraint firstItem="health-diet-card" firstAttribute="leading" secondItem="view-health" secondAttribute="leading" constant="26" id="h-main-6"/>
+                            <constraint firstItem="health-diet-card" firstAttribute="trailing" secondItem="view-health" secondAttribute="trailing" constant="-26" id="h-main-7"/>
+                            <constraint firstItem="health-diet-card" firstAttribute="height" constant="205" id="h-main-8"/>
+                            <constraint firstItem="health-weight-card" firstAttribute="top" secondItem="health-diet-card" secondAttribute="bottom" constant="22" id="h-main-9"/>
+                            <constraint firstItem="weight-value" firstAttribute="top" secondItem="weight-title" secondAttribute="bottom" constant="24" id="wc3"/>
+                            <constraint firstItem="weight-value" firstAttribute="leading" secondItem="weight-title" secondAttribute="leading" id="wc4"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="내 건강" id="tab-health"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-health" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="350" y="-540"/>
+        </scene>
+        <!--미션-->
+        <scene sceneID="scene-mission">
+            <objects>
+                <viewController id="vc-mission" customClass="MissionViewController" customModule="CheckFit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-mission">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label contentMode="scaleToFill" text="미션" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mission-title">
+                                <rect key="frame" x="24" y="146" width="52" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.089999999999999997" green="0.13" blue="0.19" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label contentMode="scaleToFill" text="기본 미션" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mission-section">
+                                <rect key="frame" x="23.999999999999993" y="238" width="99.333333333333314" height="32.333333333333314"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                <color key="textColor" red="0.089999999999999997" green="0.13" blue="0.19" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mission-card1">
+                                <rect key="frame" x="24" y="292.33333333333331" width="345" height="116"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mission-card2">
+                                <rect key="frame" x="24" y="424.33333333333331" width="345" height="115.99999999999994"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mission-card3">
+                                <rect key="frame" x="24" y="556.33333333333337" width="345" height="116"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-mission"/>
+                        <color key="backgroundColor" red="0.96499999999999997" green="0.97299999999999998" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mission-title" firstAttribute="top" secondItem="safe-mission" secondAttribute="top" constant="28" id="m1"/>
+                            <constraint firstItem="mission-card2" firstAttribute="leading" secondItem="mission-card1" secondAttribute="leading" id="m10"/>
+                            <constraint firstItem="mission-card2" firstAttribute="trailing" secondItem="mission-card1" secondAttribute="trailing" id="m11"/>
+                            <constraint firstItem="mission-card2" firstAttribute="height" secondItem="mission-card1" secondAttribute="height" id="m12"/>
+                            <constraint firstItem="mission-card3" firstAttribute="top" secondItem="mission-card2" secondAttribute="bottom" constant="16" id="m13"/>
+                            <constraint firstItem="mission-card3" firstAttribute="leading" secondItem="mission-card1" secondAttribute="leading" id="m14"/>
+                            <constraint firstItem="mission-card3" firstAttribute="trailing" secondItem="mission-card1" secondAttribute="trailing" id="m15"/>
+                            <constraint firstItem="mission-card3" firstAttribute="height" secondItem="mission-card1" secondAttribute="height" id="m16"/>
+                            <constraint firstItem="mission-title" firstAttribute="leading" secondItem="view-mission" secondAttribute="leading" constant="24" id="m2"/>
+                            <constraint firstItem="mission-section" firstAttribute="top" secondItem="mission-title" secondAttribute="bottom" constant="56" id="m3"/>
+                            <constraint firstItem="mission-section" firstAttribute="leading" secondItem="mission-title" secondAttribute="leading" id="m4"/>
+                            <constraint firstItem="mission-card1" firstAttribute="top" secondItem="mission-section" secondAttribute="bottom" constant="22" id="m5"/>
+                            <constraint firstItem="mission-card1" firstAttribute="leading" secondItem="view-mission" secondAttribute="leading" constant="24" id="m6"/>
+                            <constraint firstItem="mission-card1" firstAttribute="trailing" secondItem="view-mission" secondAttribute="trailing" constant="-24" id="m7"/>
+                            <constraint firstItem="mission-card1" firstAttribute="height" constant="116" id="m8"/>
+                            <constraint firstItem="mission-card2" firstAttribute="top" secondItem="mission-card1" secondAttribute="bottom" constant="16" id="m9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="미션" id="tab-mission"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-mission" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="820" y="-540"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="scene-add">
+            <objects>
+                <viewController id="vc-add" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-add">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="xzu-uv-qMw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="tab-add"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-add" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1290" y="-540"/>
+        </scene>
+        <!--콘텐츠-->
+        <scene sceneID="scene-content">
+            <objects>
+                <viewController id="vc-content" customClass="ContentViewController" customModule="CheckFit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-content">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label contentMode="scaleToFill" text="콘텐츠" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="content-title">
+                                <rect key="frame" x="22" y="142" width="78" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.089999999999999997" green="0.13" blue="0.19" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-search">
+                                <rect key="frame" x="22" y="200" width="349" height="56"/>
+                                <color key="backgroundColor" red="0.95499999999999996" green="0.95999999999999996" blue="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label contentMode="scaleToFill" text="전체      전신      요가      복근" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="content-chips">
+                                <rect key="frame" x="22" y="276" width="169.33333333333334" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" red="0.02" green="0.59999999999999998" blue="0.39000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-video">
+                                <rect key="frame" x="22" y="320" width="349" height="190"/>
+                                <color key="backgroundColor" red="0.070000000000000007" green="0.13" blue="0.14000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label contentMode="scaleToFill" text="집에서 하는 15분 지방 연소 전신 운동" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="content-video-title">
+                                <rect key="frame" x="22" y="524" width="349" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.089999999999999997" green="0.13" blue="0.19" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-content"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="content-title" firstAttribute="top" secondItem="safe-content" secondAttribute="top" constant="24" id="c1"/>
+                            <constraint firstItem="content-video" firstAttribute="leading" secondItem="content-search" secondAttribute="leading" id="c10"/>
+                            <constraint firstItem="content-video" firstAttribute="trailing" secondItem="content-search" secondAttribute="trailing" id="c11"/>
+                            <constraint firstItem="content-video" firstAttribute="height" constant="190" id="c12"/>
+                            <constraint firstItem="content-video-title" firstAttribute="top" secondItem="content-video" secondAttribute="bottom" constant="14" id="c13"/>
+                            <constraint firstItem="content-video-title" firstAttribute="leading" secondItem="content-video" secondAttribute="leading" id="c14"/>
+                            <constraint firstItem="content-video-title" firstAttribute="trailing" secondItem="content-video" secondAttribute="trailing" id="c15"/>
+                            <constraint firstItem="content-title" firstAttribute="leading" secondItem="view-content" secondAttribute="leading" constant="22" id="c2"/>
+                            <constraint firstItem="content-search" firstAttribute="top" secondItem="content-title" secondAttribute="bottom" constant="22" id="c3"/>
+                            <constraint firstItem="content-search" firstAttribute="leading" secondItem="view-content" secondAttribute="leading" constant="22" id="c4"/>
+                            <constraint firstItem="content-search" firstAttribute="trailing" secondItem="view-content" secondAttribute="trailing" constant="-22" id="c5"/>
+                            <constraint firstItem="content-search" firstAttribute="height" constant="56" id="c6"/>
+                            <constraint firstItem="content-chips" firstAttribute="top" secondItem="content-search" secondAttribute="bottom" constant="20" id="c7"/>
+                            <constraint firstItem="content-chips" firstAttribute="leading" secondItem="content-title" secondAttribute="leading" id="c8"/>
+                            <constraint firstItem="content-video" firstAttribute="top" secondItem="content-chips" secondAttribute="bottom" constant="26" id="c9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="콘텐츠" id="tab-content"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-content" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1760" y="-540"/>
+        </scene>
+        <!--마이페이지-->
+        <scene sceneID="scene-mypage">
+            <objects>
+                <viewController id="vc-mypage" customClass="MyPageViewController" customModule="CheckFit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="view-mypage">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mypage-profile">
+                                <rect key="frame" x="0.0" y="118" width="393" height="300"/>
+                                <subviews>
+                                    <label contentMode="scaleToFill" text="🐱" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mypage-avatar">
+                                        <rect key="frame" x="173" y="28.000000000000004" width="47" height="50.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" text="고먐미 님" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mypage-name">
+                                        <rect key="frame" x="150.66666666666666" y="86.333333333333343" width="92" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <color key="textColor" red="0.089999999999999997" green="0.13" blue="0.19" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" text="leedayun03417@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mypage-email">
+                                        <rect key="frame" x="95.333333333333329" y="124.33333333333334" width="202.33333333333337" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.64000000000000001" blue="0.69999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <label contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="mypage-stats">
+                                        <rect key="frame" x="79.333333333333329" y="160.33333333333331" width="234.33333333333337" height="38.333333333333343"/>
+                                        <string key="text">코인          연속 기록          완료 미션
+● 1,250        🔥 12일        ✓ 42개</string>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="mypage-avatar" firstAttribute="top" secondItem="mypage-profile" secondAttribute="top" constant="28" id="mp1"/>
+                                    <constraint firstItem="mypage-avatar" firstAttribute="centerX" secondItem="mypage-profile" secondAttribute="centerX" id="mp2"/>
+                                    <constraint firstItem="mypage-name" firstAttribute="top" secondItem="mypage-avatar" secondAttribute="bottom" constant="8" id="mp3"/>
+                                    <constraint firstItem="mypage-name" firstAttribute="centerX" secondItem="mypage-profile" secondAttribute="centerX" id="mp4"/>
+                                    <constraint firstItem="mypage-email" firstAttribute="top" secondItem="mypage-name" secondAttribute="bottom" constant="8" id="mp5"/>
+                                    <constraint firstItem="mypage-email" firstAttribute="centerX" secondItem="mypage-profile" secondAttribute="centerX" id="mp6"/>
+                                    <constraint firstItem="mypage-stats" firstAttribute="top" secondItem="mypage-email" secondAttribute="bottom" constant="18" id="mp7"/>
+                                    <constraint firstItem="mypage-stats" firstAttribute="centerX" secondItem="mypage-profile" secondAttribute="centerX" id="mp8"/>
+                                </constraints>
+                            </view>
+                            <label contentMode="scaleToFill" text="이번 달 활동" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mypage-section">
+                                <rect key="frame" x="26.000000000000007" y="440" width="104.66666666666669" height="26.333333333333314"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.64000000000000001" blue="0.69999999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mypage-menu">
+                                <rect key="frame" x="26" y="488.33333333333326" width="341" height="210"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-mypage"/>
+                        <color key="backgroundColor" red="0.96499999999999997" green="0.97299999999999998" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mypage-profile" firstAttribute="top" secondItem="safe-mypage" secondAttribute="top" id="my1"/>
+                            <constraint firstItem="mypage-menu" firstAttribute="height" constant="210" id="my10"/>
+                            <constraint firstItem="mypage-profile" firstAttribute="leading" secondItem="view-mypage" secondAttribute="leading" id="my2"/>
+                            <constraint firstItem="mypage-profile" firstAttribute="trailing" secondItem="view-mypage" secondAttribute="trailing" id="my3"/>
+                            <constraint firstItem="mypage-profile" firstAttribute="height" constant="300" id="my4"/>
+                            <constraint firstItem="mypage-section" firstAttribute="top" secondItem="mypage-profile" secondAttribute="bottom" constant="22" id="my5"/>
+                            <constraint firstItem="mypage-section" firstAttribute="leading" secondItem="view-mypage" secondAttribute="leading" constant="26" id="my6"/>
+                            <constraint firstItem="mypage-menu" firstAttribute="top" secondItem="mypage-section" secondAttribute="bottom" constant="22" id="my7"/>
+                            <constraint firstItem="mypage-menu" firstAttribute="leading" secondItem="view-mypage" secondAttribute="leading" constant="26" id="my8"/>
+                            <constraint firstItem="mypage-menu" firstAttribute="trailing" secondItem="view-mypage" secondAttribute="trailing" constant="-26" id="my9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="마이페이지" id="tab-mypage"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-mypage" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2230" y="-540"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
