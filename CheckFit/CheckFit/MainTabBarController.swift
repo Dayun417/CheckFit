@@ -8,6 +8,8 @@ import UIKit
 final class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     private let centerButton = UIButton(type: .system)
 
+    override var childForStatusBarStyle: UIViewController? { selectedViewController }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
@@ -111,7 +113,8 @@ final class MainTabBarController: UITabBarController, UITabBarControllerDelegate
         centerButton.backgroundColor = AppTheme.brand
         centerButton.tintColor = .white
         centerButton.layer.cornerRadius = 29
-        centerButton.layer.borderWidth = 0
+        centerButton.layer.borderWidth = 4
+        centerButton.layer.borderColor = UIColor.white.cgColor
         centerButton.setImage(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .semibold))?.withRenderingMode(.alwaysTemplate), for: .normal)
         centerButton.addAction(UIAction { [weak self] _ in self?.presentQuickAdd() }, for: .touchUpInside)
         view.addSubview(centerButton)
@@ -182,7 +185,7 @@ final class QuickAddMenuViewController: UIViewController {
         super.viewDidAppear(animated)
         guard !didAnimateIn else { return }
         didAnimateIn = true
-        UIView.animate(withDuration: 0.28, delay: 0, usingSpringWithDamping: 0.92, initialSpringVelocity: 0.6, options: [.curveEaseOut]) {
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.4, options: [.curveEaseOut]) {
             self.view.alpha = 1
             self.sheetView.transform = .identity
         }
@@ -196,12 +199,14 @@ final class QuickAddMenuViewController: UIViewController {
         let dim = UIView()
         dim.backgroundColor = UIColor.black.withAlphaComponent(0.18)
         dim.translatesAutoresizingMaskIntoConstraints = false
+        dim.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapped)))
         view.addSubview(dim)
 
         sheetView.applyCard(radius: 40, shadow: true)
         sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         sheetView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(sheetView)
+        sheetView.addSheetGrabber()
 
         let stack = UIStackView()
         stack.axis = .vertical
@@ -213,7 +218,7 @@ final class QuickAddMenuViewController: UIViewController {
         top.axis = .horizontal
         top.alignment = .center
         top.distribution = .equalSpacing
-        top.addArrangedSubview(UILabel("기록하기 📝", size: 26, weight: .black))
+        top.addArrangedSubview(UILabel("기록하기", size: 26, weight: .black))
         let close = IconButton(symbol: "xmark", color: AppTheme.muted, pointSize: 24, weight: .medium)
         close.addAction(UIAction { [weak self] _ in self?.dismissSheet() }, for: .touchUpInside)
         top.addArrangedSubview(close)
@@ -223,7 +228,7 @@ final class QuickAddMenuViewController: UIViewController {
         row.axis = .horizontal
         row.distribution = .fillEqually
         row.spacing = 18
-        row.addArrangedSubview(action("waveform.path.ecg", "체중", .systemPink, .weight))
+        row.addArrangedSubview(action("figure.stand", "체중", .systemPink, .weight))
         row.addArrangedSubview(action("drop", "수분", .systemBlue, .water))
         row.addArrangedSubview(action("figure.strengthtraining.traditional", "운동", AppTheme.brand, .exercise))
         row.addArrangedSubview(action("fork.knife", "식단", .systemOrange, .meal))
@@ -246,6 +251,10 @@ final class QuickAddMenuViewController: UIViewController {
             stack.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -32),
             stack.bottomAnchor.constraint(equalTo: sheetView.safeAreaLayoutGuide.bottomAnchor, constant: -30)
         ])
+    }
+
+    @objc private func backgroundTapped() {
+        dismissSheet()
     }
 
     private func dismissSheet() {
