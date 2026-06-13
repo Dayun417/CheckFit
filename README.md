@@ -123,3 +123,9 @@ CheckFit은 iOS 환경에서 동작하는 Swift 기반 애플리케이션입니�
 - Swift: 애플리케이션 개발 언어
 - Interface Builder / Storyboard: 기본 앱 진입 화면 및 리소스 구성
 - iOS Simulator: 화면 동작 및 UI 테스트
+
+## 3. 시현 영상
+<a href="https://www.youtube.com/watch?v=lHwqND66MvI&t=1s">
+ <img width="245" height="207" alt="스크린샷 2026-06-13 오후 5 22 38" src="https://github.com/user-attachments/assets/4731c8cc-8bfe-462a-9e44-91b689a9162c" />   
+</a>
+
