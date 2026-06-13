@@ -13,10 +13,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = scene as? UIWindowScene else { return }
+
+        // 먼저 로고 스플래시를 루트로 띄우고, 끝나면 홈(Main.storyboard)으로 부드럽게 전환한다.
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = SplashViewController { [weak window] in
+            guard let window else { return }
+            let home = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            UIView.transition(with: window, duration: 0.45, options: .transitionCrossDissolve) {
+                let wasEnabled = UIView.areAnimationsEnabled
+                UIView.setAnimationsEnabled(false)
+                window.rootViewController = home
+                UIView.setAnimationsEnabled(wasEnabled)
+            }
+        }
+        self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
