@@ -48,7 +48,7 @@ CheckFit은 바쁜 일상 속에서도 사용자가 자신의 건강 상태를 �
   <img width="171" height="368" alt="스크린샷 2026-06-13 오후 3 09 59" src="https://github.com/user-attachments/assets/6452bc76-ff34-4386-9028-b409c35716be" />
 
  - 식단 기록 화면
-   - 음식 검색, 끼니별 기록, 직접 등록, 칼로리 및 탄단지 정보 관리
+   - 음식 검색, 끼니별 기록, 직접 등록, 칼로리 및 영양 정보 관리
   <img width="174" height="371" alt="스크린샷 2026-06-13 오후 3 07 05" src="https://github.com/user-attachments/assets/483eeb9f-85f5-4d64-8b68-3c7cead1312b" />
   <img width="176" height="368" alt="스크린샷 2026-06-13 오후 3 03 45" src="https://github.com/user-attachments/assets/ca4ad37a-36b6-411f-8fb3-387c7548ff8d" />
   <img width="172" height="366" alt="스크린샷 2026-06-13 오후 3 04 39" src="https://github.com/user-attachments/assets/b396c3a3-9a3f-484c-ade7-639e5236e741" />
