@@ -210,6 +210,26 @@ final class HealthStore {
         return keys.filter { recorded.contains($0) }.count
     }
 
+    // MARK: - 운동 메모 (날짜별)
+
+    private var exerciseMemos: [String: String] {
+        get { (d.dictionary(forKey: "checkfit.exerciseMemos") as? [String: String]) ?? [:] }
+        set { d.set(newValue, forKey: "checkfit.exerciseMemos"); d.synchronize() }
+    }
+    /// 해당 날짜의 운동 메모. 기록 없으면 빈 문자열.
+    func exerciseMemo(for date: Date) -> String { exerciseMemos[dayKey(date)] ?? "" }
+    /// 해당 날짜의 운동 메모를 저장한다. 비어 있으면 기록을 지운다.
+    func setExerciseMemo(_ text: String, for date: Date) {
+        var all = exerciseMemos
+        let key = dayKey(date)
+        if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            all.removeValue(forKey: key)
+        } else {
+            all[key] = text
+        }
+        exerciseMemos = all
+    }
+
     // MARK: - 연속 기록 (체중·운동·수분 중 하나라도 입력한 날을 기록)
 
     private var recordedDays: [String] {

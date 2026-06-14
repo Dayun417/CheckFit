@@ -31,6 +31,7 @@ final class DetailViewController: UIViewController {
     private var committedWeight: CGFloat? = CGFloat(HealthStore.shared.weight)
     private weak var weightValueLabel: UITextField?
     private weak var weightChartView: WeightTrendChartView?
+    private weak var exerciseMemoView: PlaceholderTextView?
 
     init(kind: String, value: String, symbol: String, color: UIColor, note: String) {
         self.kind = kind
@@ -54,8 +55,8 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         build()
-        // 체중 입력 중 화면을 탭하면 키보드를 닫고 입력값을 적용한다(편집 종료 → 저장).
-        if kind == "체중" {
+        // 체중·운동 입력 중 화면을 탭하면 키보드를 닫고 입력값을 적용한다(편집 종료 → 저장).
+        if kind == "체중" || kind == "운동" {
             let dismissTap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
             dismissTap.cancelsTouchesInView = false
             view.addGestureRecognizer(dismissTap)
@@ -957,6 +958,11 @@ final class DetailViewController: UIViewController {
 
         let memo = PlaceholderTextView()
         memo.placeholder = "운동 메모를 기록해보세요"
+        memo.text = HealthStore.shared.exerciseMemo(for: selectedDate)
+        memo.delegate = self
+        exerciseMemoView = memo
+        // 저장된 메모가 있으면 플레이스홀더를 숨긴다.
+        NotificationCenter.default.post(name: UITextView.textDidChangeNotification, object: memo)
         memo.textColor = AppTheme.text
         memo.font = AppTheme.font(15, .semibold)
         memo.backgroundColor = .white
@@ -1647,5 +1653,15 @@ final class DetailViewController: UIViewController {
             bar.widthAnchor.constraint(equalTo: barBack.widthAnchor, multiplier: max(0.03, progress))
         ])
         return card
+    }
+}
+
+// MARK: - 운동 메모 저장
+
+extension DetailViewController: UITextViewDelegate {
+    /// 메모 입력을 마치면(다른 화면을 탭해 키보드가 내려가면) 해당 날짜에 저장한다.
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard textView === exerciseMemoView else { return }
+        HealthStore.shared.setExerciseMemo(textView.text, for: selectedDate)
     }
 }
