@@ -3,7 +3,7 @@
 식단, 운동, 수분 섭취, 체중, 단식 기록을 한 화면에서 관리할 수 있도록 만든 iOS 건강관리 도우미 애플리케이션
 
 ## 시연 영상 (이미지 링크)
-<a href="https://www.youtube.com/watch?v=lHwqND66MvI&t=1s">
+<a href="https://www.youtube.com/watch?v=Fo3feYfLxJg">
  <img width="245" height="207" alt="스크린샷 2026-06-13 오후 5 22 38" src="https://github.com/user-attachments/assets/4731c8cc-8bfe-462a-9e44-91b689a9162c" />   
 </a>
 
